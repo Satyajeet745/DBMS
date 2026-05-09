@@ -1,0 +1,74 @@
+// single inheritance
+
+import java.util.Scanner;
+
+public class Student extends Person {
+
+    int rollno;
+    String course;
+
+    void getStudentData() {
+
+        getPersonData();
+
+        System.out.println("Enter Roll no.: ");
+        rollno = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("Enter Course: ");
+        course = sc.nextLine();
+    }
+
+    void displayInfo() {
+
+        display();
+
+        System.out.println("Roll no.: " + rollno);
+        System.out.println("Course: " + course);
+    }
+    
+
+    public static void main(String[] args) {
+
+        Student s = new Student();
+
+        System.out.println("\n***** Enter Student Details *****");
+
+        s.getStudentData();
+
+        System.out.println("\n***** Student Information *****");
+
+        s.displayInfo();
+
+       
+    }
+}
+
+
+
+
+
+class Person {
+
+     Scanner sc = new Scanner(System.in);
+
+    String name;
+    int age;
+
+    void getPersonData() {
+
+        System.out.println("Enter Name: ");
+        name = sc.nextLine();
+
+        System.out.println("Enter Age: ");
+        age = sc.nextInt();
+        sc.nextLine();
+    }
+
+    void display() {
+
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+

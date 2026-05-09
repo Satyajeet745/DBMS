@@ -1,0 +1,106 @@
+//interface
+import java.util.Scanner;
+
+class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Shape s = null;
+
+        String ans;
+
+        do {
+
+            System.out.println("Choose option :");
+            System.out.println("1. Circle");
+            System.out.println("2. Rectangle");
+
+            int choice = sc.nextInt();
+
+            if (choice == 1) {
+
+                System.out.println("Enter radius:");
+                double r = sc.nextDouble();
+
+                s = new Circle(r);
+            }
+
+            else if (choice == 2) {
+
+                System.out.println("Enter length:");
+                double l = sc.nextDouble();
+
+                System.out.println("Enter breadth:");
+                double b = sc.nextDouble();
+
+                s = new Rectangle(l, b);
+            }
+
+            else {
+
+                System.out.println("Invalid Input");
+            }
+
+            if (s != null) {
+                s.calculateArea();
+            }
+
+            System.out.print("Do you want to continue? (y/n): ");
+            ans = sc.next();
+
+        } while (ans.equalsIgnoreCase("y"));
+
+        
+    }
+}
+
+
+interface Shape {
+
+    void calculateArea();
+}
+
+
+class Circle implements Shape {
+
+    double radius;
+
+    Circle(double radius)
+    {
+        this.radius = radius;
+    }
+
+    public void calculateArea() 
+    {
+
+        double area = 3.14 * radius * radius;
+
+        System.out.println("Area of circle is: " + area);
+    }
+}
+
+
+class Rectangle implements Shape
+{
+
+    double length, breadth;
+
+
+    Rectangle(double length, double breadth)
+    {
+
+        this.length = length;
+        this.breadth = breadth;
+    }
+
+
+    public void calculateArea() 
+    {
+
+        double area = length * breadth;
+
+        System.out.println("Area of rectangle is: " + area);
+    }
+}

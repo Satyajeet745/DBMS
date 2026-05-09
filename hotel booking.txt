@@ -1,0 +1,206 @@
+//library
+
+
+
+
+import java.util.Scanner;
+
+class Book
+{
+    String bookname;
+    String Author;
+    boolean isIssued;
+
+    static int totalBooks = 0;
+
+    // Constructor
+    public Book(String bookname, String Author)
+    {
+        this.bookname = bookname;
+        this.Author = Author;
+        this.isIssued = false;
+
+        totalBooks++;
+    }
+
+    // Display Book
+    void displayBook()
+    {
+        System.out.println("Book Name : " + bookname);
+        System.out.println("Author    : " + Author);
+
+        if(isIssued)
+        {
+            System.out.println("Status    : Issued");
+        }
+        else
+        {
+            System.out.println("Status    : Available");
+        }
+
+        System.out.println(" ");
+    }
+
+    // Issue Book
+    void issueBook()
+    {
+        if(!isIssued)
+        {
+            isIssued = true;
+            System.out.println("Book issued successfully!");
+        }
+        else
+        {
+            System.out.println("Book already issued!");
+        }
+    }
+
+    // Return Book
+    void returnBook()
+    {
+        if(isIssued)
+        {
+            isIssued = false;
+            System.out.println("Book returned successfully!");
+        }
+        else
+        {
+            System.out.println("Book was not issued!");
+        }
+    }
+
+    // Static Method
+    static void getTotalBooks()
+    {
+        System.out.println("Total Books : " + totalBooks);
+    }
+
+    // Main Method
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+
+        Book[] arr = new Book[10];
+
+        int n = 0;
+        int choice;
+
+        // Default Book
+        arr[n] = new Book("RICH DAD POOR DAD", "ROBERT T. KIYOSAKI");
+        n++;
+
+        do
+        {
+            System.out.println("\n===== LIBRARY MANAGEMENT SYSTEM =====");
+
+            System.out.println("1. Add Book");
+            System.out.println("2. Display Books");
+            System.out.println("3. Issue Book");
+            System.out.println("4. Return Book");
+            System.out.println("5. Total Books");
+            System.out.println("6. Exit");
+
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch(choice)
+            {
+                case 1:
+
+                    System.out.print("Enter Book Name: ");
+                    String name = sc.nextLine();
+
+                    System.out.print("Enter Author Name: ");
+                    String author = sc.nextLine();
+
+                    arr[n] = new Book(name, author);
+
+                    n++;
+
+                    System.out.println("Book added successfully!");
+
+                    break;
+
+                case 2:
+
+                    for(Book b : arr)
+                    {
+                        if(b != null)
+                        {
+                            b.displayBook();
+                        }
+                    }
+
+                    break;
+
+                case 3:
+
+                    System.out.print("Enter Book Name to Issue: ");
+                    String issueName = sc.nextLine();
+
+                    int found1 = 0;
+
+                    for(Book b : arr)
+                    {
+                        if(b != null && b.bookname.equalsIgnoreCase(issueName))
+                        {
+                            b.issueBook();
+                            found1 = 1;
+                            break;
+                        }
+                    }
+
+                    if(found1 == 0)
+                    {
+                        System.out.println("Book not found!");
+                    }
+
+                    break;
+
+                case 4:
+
+                    System.out.print("Enter Book Name to Return: ");
+                    String returnName = sc.nextLine();
+
+                    int found2 = 0;
+
+                    for(Book b : arr)
+                    {
+                        if(b != null && b.bookname.equalsIgnoreCase(returnName))
+                        {
+                            b.returnBook();
+                            found2 = 1;
+                            break;
+                        }
+                    }
+
+                    if(found2 == 0)
+                    {
+                        System.out.println("Book not found!");
+                    }
+
+                    break;
+
+                case 5:
+
+                    Book.getTotalBooks();
+
+                    break;
+
+                case 6:
+
+                    System.out.println("Thank You!");
+
+                    break;
+
+                default:
+
+                    System.out.println("Invalid Choice!");
+            }
+
+        } while(choice != 6);
+
+        sc.close();
+    }
+}

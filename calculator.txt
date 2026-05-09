@@ -1,0 +1,87 @@
+//calculator
+
+import java.util.Scanner;
+
+class Calculator {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String ans;
+
+        do {
+
+            try {
+
+                System.out.print("Enter first number: ");
+                double n1 = sc.nextDouble();
+
+                System.out.print("Enter second number: ");
+                double n2 = sc.nextDouble();
+
+                System.out.println("***** Calculator ******");
+                System.out.println("1. Addition");
+                System.out.println("2. Subtraction");
+                System.out.println("3. Multiplication");
+                System.out.println("4. Division");
+                System.out.println("5. Exit");
+
+                System.out.print("Choose operation: ");
+                int choose = sc.nextInt();
+
+                switch (choose) {
+
+                    case 1:
+                        System.out.println("Addition = " + (n1 + n2));
+                        break;
+
+                    case 2:
+                        System.out.println("Subtraction = " + (n1 - n2));
+                        break;
+
+                    case 3:
+                        System.out.println("Multiplication = " + (n1 * n2));
+                        break;
+
+                    case 4:
+
+                        if (n2 != 0)
+                            System.out.println("Division = " + (n1 / n2));
+                        else
+                            System.out.println("Cannot divide by zero");
+
+                        break;
+
+                    case 5:
+                        System.out.println("Calculator Closed!");
+                        sc.close();
+                        return;
+
+                    default:
+                        System.out.println("Invalid Choice!");
+
+                }
+
+            }
+
+            catch (Exception e) {
+
+                System.out.println("Invalid Input!");
+
+                sc.nextLine();
+
+            }
+
+            System.out.print("Do you want to continue? (y/n): ");
+            ans = sc.next();
+
+        }
+
+        while (ans.equalsIgnoreCase("y"));
+
+        System.out.println("Thank You!");
+
+       
+    }
+}

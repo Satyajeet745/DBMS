@@ -1,0 +1,147 @@
+// atm 
+
+
+import java.util.Scanner;   // Import Scanner class for user input
+
+public class ATM {
+
+    public static void main(String[] args) {
+
+        // Create Scanner object
+        Scanner sc = new Scanner(System.in);
+
+        // Initial account balance
+        double balance = 5000;
+
+        // Variable to store user choice
+        int choice;
+
+        // Infinite loop to keep ATM running
+        while (true) {
+
+            try {
+
+                // ATM menu
+                System.out.println("\n===== ATM MENU =====");
+                System.out.println("1. Check Balance");
+                System.out.println("2. Deposit Money");
+                System.out.println("3. Withdraw Money");
+                System.out.println("4. Exit");
+
+                // Taking user choice
+                System.out.print("Enter your choice: ");
+
+                choice = sc.nextInt();
+
+                // Switch statement for menu options
+                switch (choice) {
+
+                    case 1:
+
+                        // Display current balance
+                        System.out.println("Balance = " + balance);
+
+                        break;
+
+                    case 2:
+
+                        // Deposit operation
+                        System.out.print("Enter deposit amount: ");
+
+                        double deposit = sc.nextDouble();
+
+                        // Check invalid deposit amount
+                        if (deposit <= 0) {
+
+                            throw new IllegalArgumentException(
+                                "Invalid Deposit Amount"
+                            );
+                        }
+
+                        // Add money to balance
+                        balance = balance + deposit;
+
+                        System.out.println("Money Deposited");
+                        System.out.println(" current Balance = " + balance);
+
+                        break;
+
+                    case 3:
+
+                        // Withdraw operation
+                        System.out.print("Enter withdrawal amount: ");
+
+                        double withdraw = sc.nextDouble();
+
+                        // Check invalid withdrawal amount
+                        if (withdraw <= 0) {
+
+                            throw new IllegalArgumentException(
+                                "Invalid Withdrawal Amount"
+                            );
+                        }
+
+                        // Check insufficient balance
+                        if (withdraw > balance) {
+
+                            throw new ArithmeticException(
+                                "Insufficient Balance"
+                            );
+                        }
+
+                        // Deduct withdrawal amount
+                        balance = balance - withdraw;
+
+                        System.out.println("Money Withdrawn");
+                        System.out.println(" current Balance = " + balance);
+
+                        break;
+
+                    case 4:
+
+                        // Exit option
+                        System.out.println("Thank You");
+
+                        // Close Scanner object
+                        sc.close();
+
+                        // Terminate program
+                        return;
+
+                    default:
+
+                        // Invalid menu choice
+                        System.out.println("Invalid Choice");
+                }
+
+            }
+
+            // Handle invalid amount exceptions
+            catch (IllegalArgumentException e) {
+
+                System.out.println(e.getMessage());
+            }
+
+            // Handle insufficient balance exception
+            catch (ArithmeticException e) {
+
+                System.out.println(e.getMessage());
+            }
+
+            // Handle invalid datatype input
+            catch (Exception e) {
+
+                System.out.println("Invalid Input");
+
+                // Clear invalid input buffer
+                sc.nextLine();
+            }
+
+            // Always executes
+            finally {
+
+                System.out.println("Transaction Completed");
+            }
+        }
+    }
+}

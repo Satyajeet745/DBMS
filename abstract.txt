@@ -1,0 +1,104 @@
+//abstract class
+
+
+import java.util.Scanner;
+
+// Abstract class
+abstract class Vehicle {
+
+    abstract void startEngine();
+    abstract void fueltype();
+    abstract void speedlimit();
+
+    void stopEngine() {
+        System.out.println("Engine stopped safely.");
+    }
+
+    void vehicleInfo(String name, int wheels) {
+        System.out.println("Name of Vehicle: " + name);
+        System.out.println("Number of wheels: " + wheels);
+    }
+}
+
+// Subclass Car
+class Car extends Vehicle {
+
+    void startEngine() {
+        System.out.println("Car engine is started with key.");
+    }
+
+    void fueltype() {
+        System.out.println("Car runs on Petrol or Diesel.");
+    }
+
+    void speedlimit() {
+        System.out.println("Maximum speed of car is 180 km/hr.");
+    }
+}
+
+// Subclass Bike
+class Bike extends Vehicle {
+
+    void startEngine() {
+        System.out.println("Bike engine started with kick or electric start.");
+    }
+
+    void fueltype() {
+        System.out.println("Bike runs on Petrol.");
+    }
+
+    void speedlimit() {
+        System.out.println("Maximum speed of bike is 120 km/hr.");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Vehicle v = null;
+
+        System.out.println("Select vehicle type:");
+        System.out.println("1 - Car");
+        System.out.println("2 - Bike");
+        System.out.print("Enter choice: ");
+
+        int choice = sc.nextInt();
+        sc.nextLine();
+
+        if (choice == 1) {
+
+            System.out.print("Enter Car name: ");
+            String name = sc.nextLine();
+
+            v = new Car();
+
+            v.vehicleInfo(name, 4);
+            v.startEngine();
+            v.fueltype();
+            v.speedlimit();
+            v.stopEngine();
+
+        } else if (choice == 2) {
+
+            System.out.print("Enter Bike name: ");
+            String name = sc.nextLine();
+
+            v = new Bike();
+
+            v.vehicleInfo(name, 2);
+            v.startEngine();
+            v.fueltype();
+            v.speedlimit();
+            v.stopEngine();
+
+        } else {
+
+            System.out.println("Invalid choice");
+        }
+
+        sc.close();
+    }
+}

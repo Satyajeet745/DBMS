@@ -1,0 +1,100 @@
+//Ecommarce
+
+
+
+import java.util.Scanner; 
+ 
+class Ecom { 
+    String name; 
+    double price; 
+    int quantity; 
+ 
+    public Ecom() {
+        
+        name = "Unknown"; 
+        price = 0.0; 
+        quantity = 0; 
+    } 
+    
+    
+    public Ecom(String name, double price) { 
+        
+        this.name = name; 
+        this.price = price; 
+        quantity = 1; 
+    } 
+    
+    public Ecom(String name, double price, int quantity) { 
+        
+        this.name = name; 
+        this.price = price; 
+        this.quantity = quantity; 
+    } 
+    
+    double getTotalCost() { 
+        
+        return price * quantity; 
+    } 
+    
+    
+    static double applyDiscount(double total) { 
+        
+        if (total > 15000) { 
+            
+            return total - total * 0.25; 
+        } else if (total > 10000) { 
+            return total - total * 0.20; 
+        } else if (total > 5000) { 
+            return total - total * 0.15; 
+        } else { 
+            return total; 
+        } 
+    } 
+    
+    void displayProduct() { 
+        
+        System.out.println(name + " | Price: " + price + " | Quantity: " + 
+        quantity + " | Total: " + getTotalCost()); 
+    } 
+    
+    public static void main(String[] args) { 
+        Scanner scanner = new Scanner(System.in); 
+ 
+        Ecom p1 = new Ecom("Powerbank", 1500); 
+        Ecom p2 = new Ecom("Headphones", 150, 2); 
+ 
+        System.out.print("Enter product name: "); 
+        String name = scanner.nextLine(); 
+ 
+        System.out.print("Enter product price: "); 
+        double price = scanner.nextDouble(); 
+ 
+        System.out.print("Enter quantity: "); 
+        int quantity = scanner.nextInt(); 
+ 
+        Ecom userProduct = new Ecom(name, price, quantity); 
+ 
+        System.out.println("\n========== ORDER SUMMARY ==========");
+        
+        p1.displayProduct(); 
+        
+        p2.displayProduct(); 
+        
+        userProduct.displayProduct(); 
+        
+ 
+        double totalCost = p1.getTotalCost() + p2.getTotalCost() + 
+        userProduct.getTotalCost(); 
+        
+        double finalAmount = Ecom.applyDiscount(totalCost); 
+ 
+        System.out.println("\nTotal Cost Before Discount: " + totalCost); 
+        
+        System.out.println("Final Price After Discount: " + finalAmount); 
+        
+        System.out.println("Thank you for shopping!"); 
+ 
+      
+    } 
+} 
+ 
